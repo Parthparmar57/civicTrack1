@@ -162,44 +162,44 @@ const AdminDashboard = () => {
     ];
 
     return (
-        <div className="space-y-8 bg-white min-h-screen">
+        <div className="space-y-6 sm:space-y-8 bg-white min-h-screen">
             <div>
-                <h1 className="text-2xl font-bold text-gray-900">Platform Overview</h1>
-                <p className="text-gray-600">Welcome back! Here's what's happening on your platform today.</p>
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Platform Overview</h1>
+                <p className="text-sm sm:text-base text-gray-600">Welcome back! Here's what's happening on your platform today.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {statCards.map((card, idx) => (
                     <motion.div
                         key={idx}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.1 }}
-                        className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100 flex flex-col gap-4 hover:shadow-md transition-shadow"
+                        className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 flex flex-col gap-3 sm:gap-4 hover:shadow-md transition-shadow"
                     >
                         <div className="flex justify-between items-start">
-                            <div className={`p-3 rounded-2xl ${card.color}`}>
+                            <div className={`p-2 sm:p-3 rounded-xl sm:rounded-2xl ${card.color}`}>
                                 {card.icon}
                             </div>
                             <div className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg text-xs font-semibold">
-                                <TrendingUp size={12} />
-                                12%
+                                <TrendingUp size={10} className="sm:w-3 sm:h-3" />
+                                <span className="hidden sm:inline">12%</span>
                             </div>
                         </div>
                         <div>
-                            <p className="text-gray-500 text-sm font-medium">{card.label}</p>
-                            <h2 className="text-3xl font-bold text-gray-900">{card.count}</h2>
+                            <p className="text-gray-500 text-xs sm:text-sm font-medium">{card.label}</p>
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">{card.count}</h2>
                         </div>
-                        <p className="text-xs text-gray-400 font-medium">{card.trend}</p>
+                        <p className="text-xs text-gray-400 font-medium hidden sm:block">{card.trend}</p>
                     </motion.div>
                 ))}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 bg-white p-8 rounded-3xl shadow-sm border border-gray-100 min-h-[400px] flex flex-col">
-                    <div className="flex justify-between items-center mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div className="lg:col-span-2 bg-white p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 min-h-[300px] sm:min-h-[400px] flex flex-col">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 sm:mb-8 gap-4">
                         <div>
-                            <h3 className="text-lg font-bold text-gray-900">Issue Activity</h3>
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900">Issue Activity</h3>
                             <p className="text-xs text-gray-400 font-medium">Reports received over the last 7 days</p>
                         </div>
                         <div className="flex items-center gap-2">
@@ -208,13 +208,13 @@ const AdminDashboard = () => {
                         </div>
                     </div>
 
-                    <div className="flex-1 relative min-h-[250px] w-full mt-4">
+                    <div className="flex-1 relative min-h-[200px] sm:min-h-[250px] w-full mt-4">
                         <ActivityChart data={stats?.activity || []} />
                     </div>
                 </div>
-                <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 flex flex-col">
-                    <h3 className="text-lg font-bold text-gray-900 mb-6">Recent Alerts</h3>
-                    <div className="space-y-4 flex-1 overflow-y-auto max-h-[350px] pr-2 custom-scrollbar">
+                <div className="bg-white p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-sm border border-gray-100 flex flex-col">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">Recent Alerts</h3>
+                    <div className="space-y-3 sm:space-y-4 flex-1 overflow-y-auto max-h-[300px] sm:max-h-[350px] pr-2 custom-scrollbar">
                         {stats?.recentTasks && stats.recentTasks.length > 0 ? (
                             stats.recentTasks.map((task, i) => (
                                 <motion.div

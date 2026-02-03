@@ -15,15 +15,25 @@ const AdminLayout = () => {
     };
 
     return (
-        <div className="flex h-screen bg-white overflow-hidden">
-            <AdminSidebar isSidebarOpen={isSidebarOpen} handleLogout={handleLogout} />
+        <div className="h-screen bg-white overflow-hidden">
+            {/* Desktop Layout */}
+            <div className="hidden md:flex h-full">
+                <AdminSidebar isSidebarOpen={isSidebarOpen} handleLogout={handleLogout} />
+                <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+                    <AdminNavbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+                    <main className="flex-1 overflow-y-auto p-4 lg:p-8 bg-white">
+                        <Outlet />
+                    </main>
+                </div>
+            </div>
 
-            <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+            {/* Mobile Layout */}
+            <div className="md:hidden flex flex-col h-full">
                 <AdminNavbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-
-                <main className="flex-1 overflow-y-auto p-8 bg-white">
+                <main className="flex-1 overflow-y-auto p-4 bg-white pb-20">
                     <Outlet />
                 </main>
+                <AdminSidebar isSidebarOpen={isSidebarOpen} handleLogout={handleLogout} isMobile={true} />
             </div>
         </div>
     );

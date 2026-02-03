@@ -50,7 +50,7 @@ const Register = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden bg-gradient-to-br from-cyan-50 to-orange-50">
+        <div className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden bg-cyan-50">
             {/* Background Elements */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
@@ -65,7 +65,7 @@ const Register = () => {
             >
                 <div className="glass p-10 rounded-3xl shadow-2xl relative overflow-hidden border border-white/40">
                     {/* Gradient Border */}
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-secondary via-accent-orange to-primary" />
+                    <div className="absolute top-0 left-0 w-full h-1 bg-blue-600" />
 
                     {/* Header */}
                     <div className="text-center mb-10">
@@ -73,7 +73,7 @@ const Register = () => {
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                            className="w-20 h-20 bg-gradient-to-br from-secondary to-accent-orange rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-secondary/15"
+                            className="w-20 h-20 bg-blue-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-blue-600/15"
                         >
                             <UserPlus size={36} className="text-white" />
                         </motion.div>
@@ -154,7 +154,7 @@ const Register = () => {
                             disabled={loading}
                             className={`w-full py-4 rounded-xl text-white font-bold text-lg shadow-2xl flex items-center justify-center gap-3 transition-all mt-8 ${loading
                                 ? 'bg-gray-400 cursor-not-allowed opacity-70'
-                                : 'bg-gradient-to-r from-secondary via-accent-orange to-primary hover:shadow-secondary/30'
+                                : 'bg-blue-600 hover:bg-blue-700 hover:shadow-blue-600/30'
                                 }`}
                         >
                             {loading ? (

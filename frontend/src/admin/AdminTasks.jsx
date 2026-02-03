@@ -63,27 +63,27 @@ const AdminTasks = () => {
     if (loading) return <Loader fullScreen />;
 
     const statusMap = {
-        pending: { color: 'bg-amber-100 text-amber-700', icon: <Clock size={12} /> },
-        'in-progress': { color: 'bg-blue-100 text-blue-700', icon: <AlertCircle size={12} /> },
-        completed: { color: 'bg-emerald-100 text-emerald-700', icon: <CheckCircle2 size={12} /> }
+        pending: { color: 'bg-amber-100 text-amber-700', icon: <Clock size={12} className="text-gray-700" /> },
+        'in-progress': { color: 'bg-blue-100 text-blue-700', icon: <AlertCircle size={12} className="text-gray-700" /> },
+        completed: { color: 'bg-emerald-100 text-emerald-700', icon: <CheckCircle2 size={12} className="text-gray-700" /> }
     };
 
     return (
-        <div className="space-y-6 bg-white min-h-screen">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="space-y-4 sm:space-y-6 bg-white min-h-screen">
+            <div className="flex flex-col gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Task Management</h1>
-                    <p className="text-gray-600">Overview of all community tasks and reports.</p>
+                    <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Task Management</h1>
+                    <p className="text-sm sm:text-base text-gray-600">Overview of all community tasks and reports.</p>
                 </div>
 
-                <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-gray-200">
+                <div className="flex items-center gap-2 bg-white p-1 rounded-xl border border-gray-200 overflow-x-auto">
                     {['all', 'pending', 'in-progress', 'completed'].map((f) => (
                         <button
                             key={f}
                             onClick={() => setFilter(f)}
                             className={cn(
-                                "px-4 py-1.5 rounded-lg text-xs font-bold capitalize transition-all",
-                                filter === f ? "bg-gradient-to-r from-primary to-secondary text-white shadow-md shadow-primary/20" : "text-gray-500 hover:bg-gray-50"
+                                "px-3 sm:px-4 py-1.5 rounded-lg text-xs font-bold capitalize transition-all whitespace-nowrap",
+                                filter === f ? "bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20" : "text-gray-500 hover:bg-gray-50"
                             )}
                         >
                             {f}
@@ -92,7 +92,67 @@ const AdminTasks = () => {
                 </div>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+            {/* Mobile Card View */}
+            <div className="md:hidden space-y-4">
+                {filteredTasks.map((task) => (
+                    <motion.div
+                        layout
+                        key={task._id}
+                        className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm"
+                    >
+                        <div className="flex items-start justify-between mb-3">
+                            <div className="flex-1 min-w-0">
+                                <h3 className="font-semibold text-gray-900 text-sm truncate">{task.title}</h3>
+                                <p className="text-xs text-gray-500 line-clamp-2 mt-1">{task.description}</p>
+                            </div>
+                            <div className={cn(
+                                "ml-3 px-2 py-1 rounded-full text-[10px] font-bold uppercase flex items-center gap-1 shrink-0",
+                                statusMap[task.status]?.color
+                            )}>
+                                {statusMap[task.status]?.icon}
+                                <span className="hidden sm:inline">{task.status}</span>
+                            </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                            <span>By: {task.user?.name}</span>
+                            <span>{new Date(task.createdAt).toLocaleDateString()}</span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                            <select
+                                value={task.status}
+                                onChange={(e) => updateStatus(task._id, e.target.value)}
+                                className={cn(
+                                    "flex-1 text-xs font-bold px-2 py-1.5 rounded-lg border-none outline-none cursor-pointer",
+                                    statusMap[task.status]?.color
+                                )}
+                            >
+                                <option value="pending">Pending</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                            <button
+                                onClick={() => navigate(`/admin/issues/${task._id}`)}
+                                className="p-2 text-gray-400 hover:text-primary hover:bg-gray-100 rounded-lg transition-colors"
+                                title="View Details"
+                            >
+                                <Eye size={16} className="text-gray-700" />
+                            </button>
+                            <button
+                                onClick={() => handleDeleteTask(task._id)}
+                                className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                title="Delete Task"
+                            >
+                                <Trash2 size={16} className="text-gray-700" />
+                            </button>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
@@ -141,14 +201,14 @@ const AdminTasks = () => {
                                                 className="p-2 text-gray-400 hover:text-primary hover:bg-gray-100 rounded-lg transition-colors"
                                                 title="View Details"
                                             >
-                                                <Eye size={18} />
+                                                <Eye size={18} className="text-gray-700" />
                                             </button>
                                             <button
                                                 onClick={() => handleDeleteTask(task._id)}
                                                 className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                                 title="Delete Task"
                                             >
-                                                <Trash2 size={18} />
+                                                <Trash2 size={18} className="text-gray-700" />
                                             </button>
                                         </div>
                                     </td>
@@ -163,6 +223,13 @@ const AdminTasks = () => {
                     </div>
                 )}
             </div>
+
+            {/* Mobile Empty State */}
+            {filteredTasks.length === 0 && (
+                <div className="md:hidden py-12 text-center text-gray-400">
+                    <p className="text-sm">No tasks found.</p>
+                </div>
+            )}
         </div>
     );
 };

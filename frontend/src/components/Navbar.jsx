@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { LogOut, User, Menu, X, Bell, Search } from "lucide-react";
+import { LogOut, User, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -23,12 +23,12 @@ const Navbar = () => {
                         className="flex items-center gap-3 group"
                     >
                         <div className="relative">
-                            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                            <div className="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
                                 <div className="w-6 h-6 bg-white rounded-lg flex items-center justify-center">
-                                    <div className="w-3 h-3 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
+                                    <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full animate-pulse"></div>
+                            <div className="absolute -top-1 -right-1 w-4 h-4 bg-pink-500 rounded-full animate-pulse"></div>
                         </div>
                         <div className="flex flex-col">
                             <span className="text-2xl font-black text-gray-900 group-hover:text-purple-600 transition-colors">
@@ -62,18 +62,10 @@ const Navbar = () => {
 
                                 {/* User Actions */}
                                 <div className="flex items-center gap-4">
-                                    <button className="p-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-all">
-                                        <Search size={20} />
-                                    </button>
-                                    <button className="p-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-xl transition-all relative">
-                                        <Bell size={20} />
-                                        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-                                    </button>
-                                    
                                     <div className="flex items-center gap-3 pl-4 border-l border-gray-200">
                                         <div className="flex items-center gap-3 px-4 py-2 bg-gray-50 rounded-2xl">
-                                            <div className="w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
-                                                <User size={16} className="text-white" />
+                                            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                                <User size={16} className="text-black" />
                                             </div>
                                             <span className="text-sm font-medium text-gray-800">Welcome back!</span>
                                         </div>
@@ -81,7 +73,7 @@ const Navbar = () => {
                                             onClick={handleLogout}
                                             className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-all hover:scale-105 shadow-lg hover:shadow-red-500/25"
                                         >
-                                            <LogOut size={16} />
+                                            <LogOut size={16} className="text-black hover:text-black" />
                                             Logout
                                         </button>
                                     </div>
@@ -97,7 +89,7 @@ const Navbar = () => {
                                 </Link>
                                 <Link 
                                     to="/register" 
-                                    className="px-6 py-2.5 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white rounded-2xl font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all hover:scale-105"
+                                    className="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-semibold hover:shadow-lg hover:shadow-blue-600/25 transition-all hover:scale-105"
                                 >
                                     Get Started
                                 </Link>
@@ -110,7 +102,7 @@ const Navbar = () => {
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="md:hidden p-2 text-gray-800 hover:text-purple-600 hover:bg-gray-50 rounded-xl transition-all"
                     >
-                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        {isMenuOpen ? <X size={24} className="text-black hover:text-black" /> : <Menu size={24} className="text-black hover:text-black" />}
                     </button>
                 </div>
 
@@ -142,7 +134,7 @@ const Navbar = () => {
                                             }}
                                             className="w-full flex items-center gap-2 px-4 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-all"
                                         >
-                                            <LogOut size={16} />
+                                            <LogOut size={16} className="text-black hover:text-black" />
                                             Logout
                                         </button>
                                     </div>
@@ -158,7 +150,7 @@ const Navbar = () => {
                                     </Link>
                                     <Link 
                                         to="/register" 
-                                        className="block px-4 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white rounded-xl font-medium text-center transition-all"
+                                        className="block px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium text-center transition-all"
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         Get Started

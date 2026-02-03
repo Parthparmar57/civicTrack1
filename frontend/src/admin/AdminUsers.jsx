@@ -64,26 +64,76 @@ const AdminUsers = () => {
     if (loading) return <Loader fullScreen />;
 
     return (
-        <div className="space-y-6 bg-white min-h-screen">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="space-y-4 sm:space-y-6 bg-white min-h-screen">
+            <div className="flex flex-col gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
-                    <p className="text-gray-600">Manage your platform's users and their permissions.</p>
+                    <h1 className="text-xl sm:text-2xl font-bold text-gray-900">User Management</h1>
+                    <p className="text-sm sm:text-base text-gray-600">Manage your platform's users and their permissions.</p>
                 </div>
 
-                <div className="relative w-full sm:w-64">
-                    <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                    <input
-                        type="text"
-                        placeholder="Search users..."
-                        className="pl-10 pr-4 py-2 w-full bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                <div className="w-full">
+                    <div className="relative">
+                        <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-700" />
+                        <input
+                            type="text"
+                            placeholder="Search users..."
+                            className="pl-10 pr-4 py-2 w-full bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 outline-none transition-all text-sm"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                    </div>
                 </div>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+            {/* Mobile Card View */}
+            <div className="md:hidden space-y-4">
+                {filteredUsers.map((user) => (
+                    <motion.div
+                        layout
+                        key={user._id}
+                        className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm"
+                    >
+                        <div className="flex items-start justify-between mb-3">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shrink-0 shadow-sm">
+                                    {user.name?.charAt(0) || <UserIcon size={20} className="text-gray-700" />}
+                                </div>
+                                <div>
+                                    <p className="font-semibold text-gray-900 text-sm">{user.name}</p>
+                                    <p className="text-xs text-gray-500">{user.email}</p>
+                                </div>
+                            </div>
+                            <div className={cn(
+                                "inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-bold",
+                                user.role === 'ADMIN' ? "bg-indigo-100 text-indigo-700" : "bg-gray-100 text-gray-600"
+                            )}>
+                                {user.role === 'ADMIN' && <Shield size={10} className="text-gray-700" />}
+                                {user.role}
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
+                            <span>Joined: {new Date(user.createdAt).toLocaleDateString()}</span>
+                        </div>
+                        <div className="flex gap-2">
+                            <button
+                                onClick={() => toggleRole(user)}
+                                className="flex-1 py-2 px-3 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors text-xs font-medium border border-indigo-200"
+                            >
+                                Change Role
+                            </button>
+                            <button
+                                onClick={() => handleDeleteUser(user)}
+                                className="py-2 px-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors text-xs font-medium border border-red-200"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
@@ -104,7 +154,7 @@ const AdminUsers = () => {
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
                                             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold shrink-0 shadow-sm">
-                                                {user.name?.charAt(0) || <UserIcon size={20} />}
+                                                {user.name?.charAt(0) || <UserIcon size={20} className="text-gray-700" />}
                                             </div>
                                             <div>
                                                 <p className="font-semibold text-gray-900">{user.name}</p>
@@ -117,7 +167,7 @@ const AdminUsers = () => {
                                             "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold",
                                             user.role === 'ADMIN' ? "bg-indigo-100 text-indigo-700" : "bg-gray-100 text-gray-600"
                                         )}>
-                                            {user.role === 'ADMIN' && <Shield size={12} />}
+                                            {user.role === 'ADMIN' && <Shield size={12} className="text-gray-700" />}
                                             {user.role}
                                         </div>
                                     </td>
@@ -131,14 +181,14 @@ const AdminUsers = () => {
                                                 className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
                                                 title="Change Role"
                                             >
-                                                <Shield size={18} />
+                                                <Shield size={18} className="text-gray-700" />
                                             </button>
                                             <button
                                                 onClick={() => handleDeleteUser(user)}
                                                 className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                                                 title="Delete User"
                                             >
-                                                <Trash2 size={18} />
+                                                <Trash2 size={18} className="text-gray-700" />
                                             </button>
                                         </div>
                                     </td>

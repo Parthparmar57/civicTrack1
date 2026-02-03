@@ -147,11 +147,14 @@ CLOUDINARY_API_SECRET=your-cloudinary-api-secret
    ```
    The frontend will run on `http://localhost:5173`
 
+<<<<<<< HEAD
 ### 🌐 Live Demo
 
 The application is deployed and accessible at:
 **🔗 [https://civic-track1.vercel.app](https://civic-track1.vercel.app)**
 
+=======
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 ### 🚀 Production Mode
 
 1. **Build the Frontend**
@@ -247,15 +250,21 @@ civicTrack1/
 ### Default Admin Credentials
 For testing and initial setup, use these default admin credentials:
 
+<<<<<<< HEAD
 **🌐 Live Demo**: [https://civic-track1.vercel.app](https://civic-track1.vercel.app)
 
+=======
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 ```
 Email: admin@civictrack.com
 Password: admin123
 ```
 
+<<<<<<< HEAD
 **Admin Panel Access**: [https://civic-track1.vercel.app/admin/login](https://civic-track1.vercel.app/admin/login)
 
+=======
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 > **⚠️ Important**: Change these default credentials immediately after first login in a production environment.
 
 ### User Roles
@@ -270,7 +279,11 @@ Password: admin123
 5. Admin routes require ADMIN role verification
 
 ### Admin Panel Access
+<<<<<<< HEAD
 1. Navigate to [https://civic-track1.vercel.app/admin/login](https://civic-track1.vercel.app/admin/login) or use the admin login page
+=======
+1. Navigate to `/admin/login` or use the admin login page
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 2. Use the default admin credentials above
 3. Access the full admin dashboard with user and issue management capabilities
 
@@ -350,8 +363,13 @@ Password: admin123
 4. Set up CDN for optimal performance (optional)
 
 ### Recommended Hosting Platforms
+<<<<<<< HEAD
 - **Frontend**: ✅ **Currently deployed on Vercel** - [https://civic-track1.vercel.app](https://civic-track1.vercel.app)
 - **Backend**: ✅ **Currently deployed on Render** - [https://civictrack1-1.onrender.com](https://civictrack1-1.onrender.com)
+=======
+- **Backend**: Heroku, Railway, DigitalOcean, AWS EC2
+- **Frontend**: Vercel, Netlify, GitHub Pages
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 - **Database**: MongoDB Atlas (recommended)
 - **Images**: Cloudinary (already integrated)
 
@@ -369,10 +387,17 @@ npm test
 ```
 
 ### Manual Testing Checklist
+<<<<<<< HEAD
 - [ ] User registration and login at [https://civic-track1.vercel.app](https://civic-track1.vercel.app)
 - [ ] Issue reporting with image upload
 - [ ] Admin panel functionality at [https://civic-track1.vercel.app/admin/login](https://civic-track1.vercel.app/admin/login)
 - [ ] Mobile responsiveness across devices
+=======
+- [ ] User registration and login
+- [ ] Issue reporting with image upload
+- [ ] Admin panel functionality
+- [ ] Mobile responsiveness
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 - [ ] Cross-browser compatibility
 - [ ] API endpoint functionality
 
@@ -397,6 +422,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 
 ## 🆘 Troubleshooting
 
+<<<<<<< HEAD
 ### 🌐 **Live Application Issues**
 If you experience issues with the live application at [https://civic-track1.vercel.app](https://civic-track1.vercel.app):
 
@@ -407,6 +433,8 @@ If you experience issues with the live application at [https://civic-track1.verc
 5. **Admin Access**: Use direct link [https://civic-track1.vercel.app/admin/login](https://civic-track1.vercel.app/admin/login)
 6. **Backend Status**: Check if backend is running at [https://civictrack1-1.onrender.com](https://civictrack1-1.onrender.com)
 
+=======
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069
 ### Common Issues
 
 #### Backend Issues
@@ -465,4 +493,8 @@ For support and questions:
 
 ---
 
+<<<<<<< HEAD
 **Made with ❤️ for better civic engagement**
+=======
+**Made with ❤️ for better civic engagement**
+>>>>>>> 8c077f7c32f2c74c91fbf3d99b5916376f45c069

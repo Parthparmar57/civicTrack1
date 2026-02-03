@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { LogIn, ArrowRight, ShieldCheck, Activity, Users, Zap, Globe, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
+import config from '../config/config.js';
 
 const fadeInUp = {
     hidden: { opacity: 0, y: 30 },

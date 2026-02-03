@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from '../config/config.js';
 
 const api = axios.create({
-    baseURL: '/api',
+    baseURL: config.api.baseURL,
 });
 
 // Request Interceptor: Attach Token

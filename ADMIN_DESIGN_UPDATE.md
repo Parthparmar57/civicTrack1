@@ -1,4 +1,4 @@
-# 🎨 Admin Frontend Design Update - White Theme
+# 🎨 Admin Frontend Design Update - White Based Theme
 
 ## ✅ Successfully Updated All Admin Components
 

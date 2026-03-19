@@ -4,6 +4,7 @@
 
 I've updated all admin frontend components to match the modern white theme design used in the main frontend, replacing any pink/purple backgrounds with clean white backgrounds and modern styling.
 
+
 ### 🔄 Components Updated:
 
 #### 1. **AdminLayout.jsx**

@@ -1,7 +1,6 @@
 # 🏛️ CivicTrack - Community Engagement Platform
 
 CivicTrack is a modern, full-stack web application designed to empower citizens to report civic issues, track their progress, and engage with local authorities. Built with React.js frontend and Node.js backend, featuring a responsive design and comprehensive admin panel.
-
 ![CivicTrack Banner](frontend/public/civic%20landing.jpeg)
 
 ## ✨ Features
